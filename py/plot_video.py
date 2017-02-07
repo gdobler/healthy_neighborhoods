@@ -39,14 +39,15 @@ npnts   = len(tblobs)
 xs, ys  = [], [] if npnts==0 else np.array(tblobs).T
 pnts,   = ax.plot(ys*8, xs*8, "ro", ms=15)
 im      = ax.imshow(fr[...,::-1])
-txt     = ax.text(fr.shape[1], fr.shape[0] - 0.05 * fr.shape[0], 
+txt     = ax.text(fr.shape[1] - 0.025 * fr.shape[1], 
+                  fr.shape[0] - 0.05 * fr.shape[0], 
                   "frame:{0}, counts:{1}".format(cnt, npnts), color="w", 
                   ha="right", fontsize=15)
 plt.ion()
 plt.show()
 
 # -- loop through frames
-for ii in range(0, 3000):
+for ii in range(0, 500):
     cnt += 1
     st, fr = cap.read()
     tblobs  = blobs[str(cnt-1)]
@@ -59,4 +60,4 @@ for ii in range(0, 3000):
     im.set_data(fr[...,::-1])
     txt.set_text("frame:{0}, counts:{1}".format(cnt, npnts))
     fig.canvas.draw()
-    plt.pause(0.2)
+    plt.pause(0.01)
