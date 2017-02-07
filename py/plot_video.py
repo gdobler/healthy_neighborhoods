@@ -46,6 +46,10 @@ txt     = ax.text(fr.shape[1] - 0.025 * fr.shape[1],
 plt.ion()
 plt.show()
 
+# -- set the output file
+ofile = os.path.join("..", "output", "Syracuse - Near Westside", "movie", 
+                     "snw_ex_{0:04}.jpg")
+
 # -- loop through frames
 for ii in range(0, 500):
     cnt += 1
@@ -60,4 +64,5 @@ for ii in range(0, 500):
     im.set_data(fr[...,::-1])
     txt.set_text("frame:{0}, counts:{1}".format(cnt, npnts))
     fig.canvas.draw()
+    fig.savefig(ofile.format(cnt))
     plt.pause(0.01)
